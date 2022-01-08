@@ -6,6 +6,10 @@
     "target": "es5",
     "allowJs": true,
     "jsx": "react",
+    "moduleResolution": "node"
   },
-  "files": ["test/index.tsx"]
+  "include": [
+    "./src/*",
+    "typed-css.d.ts"
+  ]
 }

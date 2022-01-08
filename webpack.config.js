@@ -33,7 +33,18 @@ const config = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [stylesHandler, "css-loader", "postcss-loader", "sass-loader"],
+        use: [
+          stylesHandler,
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                localIdentName: '[hash:base64:6]'
+              },
+            }
+          },
+          "postcss-loader",
+          "sass-loader"],
       },
       {
         test: /\.css$/i,
@@ -43,13 +54,22 @@ const config = {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
         type: "asset",
       },
+      {
+        test: /.mp3$/i,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[hash:8].[ext]'
+          }
+        }]
+      }
 
       // Add your rules for custom modules here
       // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: [".tsx", ".ts", ".js"]
   },
 };
 
